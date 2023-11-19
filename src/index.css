@@ -10,3 +10,7 @@
 .carousel-slider {
   height: 80svh;
 }
+
+.featuredSection {
+  background-image: url("./assets/home/featured.jpg");
+}

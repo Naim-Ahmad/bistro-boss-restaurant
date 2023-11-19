@@ -1,14 +1,18 @@
-import WebTitle from '../../components/WebTitle'
-import Hero from './hero/Hero'
-import OrderSection from './order/OrderSection'
+import WebTitle from "../../components/WebTitle";
+import Featured from "./featured/Featured";
+import Hero from "./hero/Hero";
+import Menus from "./menus/Menus";
+import OrderSection from "./order/OrderSection";
+import Testimonials from "./testimonials/Testimonials";
 export default function Home() {
-
-    return (
-        
-        <div>
-            <WebTitle>Home</WebTitle>
-            <Hero/>
-            <OrderSection/>
-        </div>
-    )
+  return (
+    <>
+      <WebTitle>Home</WebTitle>
+      <Hero />
+      <OrderSection />
+      <Menus />
+      <Featured />
+      <Testimonials/>
+    </>
+  );
 }
