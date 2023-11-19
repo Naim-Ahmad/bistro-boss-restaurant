@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Container from "../../../components/Container";
 import SectionHeader from "../../../components/SectionHeader";
 import useMenus from "../../../hooks/useMenus";
-import MenuItem from "./MenuItem";
+import MenuItem from "../../shared/MenuItem";
 
 export default function Menus() {
   const { data = [] } = useMenus();

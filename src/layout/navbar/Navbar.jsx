@@ -3,7 +3,7 @@ import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping
 
 export default function Navbar() {
   const menuItemData = [
-    { page: "Home", route: "/home" },
+    { page: "Home", route: "/" },
     { page: "ContactUs", route: "/contact-us" },
     { page: "Dashboard", route: "/dashboard" },
     { page: "Our Menu", route: "/our-menu" },

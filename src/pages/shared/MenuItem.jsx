@@ -1,6 +1,6 @@
 export default function MenuItem({ menu }) {
 //   console.log(Object.keys(menu).join(","));
-  const {_id,name,recipe,image,category,price} = menu;
+  const {name,recipe,image,price} = menu;
 
   return (
     <div className="flex gap-6">
@@ -10,7 +10,7 @@ export default function MenuItem({ menu }) {
         </div>
       </div>
       <div className="space-y-4">
-        <h3>{name} ------------------</h3>
+        <h3 className="text-xl font-medium">{name} ------------------</h3>
         <p>
           {recipe}
         </p>
