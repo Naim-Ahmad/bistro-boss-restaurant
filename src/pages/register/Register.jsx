@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import loginImage from "../../../assets/others/authentication2.png";
-import SocialLogin from "../../shared/SocialLogin";
+import loginImage from "../../assets/others/authentication2.png";
+import SocialLogin from "../shared/SocialLogin";
+
 
 export default function Register() {
     const {handleSubmit, register} = useForm()

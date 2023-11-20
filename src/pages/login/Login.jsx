@@ -1,14 +1,37 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import {
+    LoadCanvasTemplate,
+    loadCaptchaEnginge,
+    validateCaptcha,
+} from "react-simple-captcha";
 import loginImage from "../../assets/others/authentication2.png";
 import SocialLogin from "../shared/SocialLogin";
 
 export default function Login() {
-    const {handleSubmit, register} = useForm()
+  const { handleSubmit, register } = useForm();
+  const [captcha, setCaptcha] = useState("");
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
 
-    const loginHandler = (data)=>{
-        console.log(data)
+  const loginHandler = (data) => {
+    console.log(data);
+  };
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const handleCaptcha = (e) => {
+    const value = e.target.value;
+
+    if (value.length >= 6) {
+      const isValid = validateCaptcha(value);
+     return setIsCaptchaValid(isValid);
+
     }
+    setCaptcha(value);
+  };
   return (
     <div>
       <div className="hero min-h-screen bg-login">
@@ -31,7 +54,7 @@ export default function Login() {
                     placeholder="Email"
                     className="input input-bordered"
                     required
-                    {...register('email')}
+                    {...register("email")}
                   />
                 </div>
                 <div className="form-control">
@@ -43,19 +66,36 @@ export default function Login() {
                     placeholder="Password"
                     className="input input-bordered"
                     required
-                    {...register('password', {required: true})}
+                    {...register("password", { required: true })}
                   />
-                 
+                </div>
+                <div className="form-control">
+                  <LoadCanvasTemplate />
+                  <input
+                    type="text"
+                    placeholder="Captcha Type Here"
+                    className="input input-bordered"
+                    required
+                    value={captcha}
+                    onChange={handleCaptcha}
+                  />
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-warning text-white font-bold">Login</button>
+                  <button
+                    disabled={!isCaptchaValid}
+                    className="btn btn-warning text-white font-bold"
+                  >
+                    Login
+                  </button>
                 </div>
               </form>
               <div className="flex justify-center flex-col items-center space-y-3">
-                <p className="text-orange-300 font-medium">New Here? <Link to="/register">Create a new Account</Link></p>
+                <p className="text-orange-300 font-medium">
+                  New Here? <Link to="/register">Create a new Account</Link>
+                </p>
                 <p>Or login with</p>
-                <SocialLogin/>
-            </div>
+                <SocialLogin />
+              </div>
             </div>
           </div>
         </div>
