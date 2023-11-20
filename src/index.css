@@ -53,3 +53,7 @@
   outline: 0px;
   border-bottom: 5px solid goldenrod;
 }
+
+.bg-login {
+  background-image: url("./assets/others/authentication.png");
+}

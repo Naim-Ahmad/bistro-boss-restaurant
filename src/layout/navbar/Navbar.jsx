@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 
 export default function Navbar() {
@@ -16,6 +16,7 @@ export default function Navbar() {
           <NavLink to={menuItem.route}>{menuItem.page}</NavLink>
         </li>
       ))}
+      {/* <li><Link><button className="btn btn-outline btn-warning btn-sm">Login</button></Link></li> */}
     </>
   );
   return (
@@ -41,9 +42,10 @@ export default function Navbar() {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm items-center dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               {listItems}
+              
             </ul>
           </div>
           <div className="uppercase">
@@ -52,11 +54,11 @@ export default function Navbar() {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{listItems}</ul>
+          <ul className="menu menu-horizontal px-1 items-center">{listItems}</ul>
           <figure className="w-10">
             <img src={logo} alt="" />
           </figure>
-          <button className="ml-4 btn btn-ghost">Login</button>
+          <Link to="/login" className="ml-6"><button className="btn btn-outline btn-warning btn-sm">Login</button></Link>
         </div>
       </div>
     </nav>
