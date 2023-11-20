@@ -7,7 +7,7 @@ export default function Navbar() {
     { page: "ContactUs", route: "/contact-us" },
     { page: "Dashboard", route: "/dashboard" },
     { page: "Our Menu", route: "/our-menu" },
-    { page: "Our Shop", route: "/our-shop" },
+    { page: "Our Shop", route: "/our-shop/salad" },
   ];
   const listItems = (
     <>
@@ -19,7 +19,7 @@ export default function Navbar() {
     </>
   );
   return (
-    <nav className="bg-black fixed top-0 z-10 w-full text-white bg-opacity-30">
+    <nav className="bg-black fixed top-0 z-10 w-full text-white bg-opacity-60">
       <div className="navbar max-w-7xl  mx-auto">
         <div className="navbar-start">
           <div className="dropdown">

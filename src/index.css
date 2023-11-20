@@ -37,3 +37,19 @@
   height: 100%;
   object-fit: cover;
 }
+
+.react-tabs__tab-list {
+  display: flex;
+  justify-content: center;
+}
+
+.react-tabs__tab {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.react-tabs__tab--selected {
+  border: 0px;
+  outline: 0px;
+  border-bottom: 5px solid goldenrod;
+}

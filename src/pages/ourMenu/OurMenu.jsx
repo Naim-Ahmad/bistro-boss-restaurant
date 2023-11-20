@@ -1,7 +1,8 @@
+import bannerImage from '../../assets/menu/banner3.jpg';
 import WebTitle from "../../components/WebTitle";
 import useMenus from "../../hooks/useMenus";
+import Banner from "../shared/banner/Banner";
 import Offered from "./Offered/Offered";
-import Banner from "./banner/Banner";
 import Desserts from "./desserts/Desserts";
 import Pizza from "./pizza/Pizza";
 import Salads from "./salads/Salads";
@@ -18,7 +19,7 @@ export default function OurMenu() {
   return (
     <>
     <WebTitle>Our Menu</WebTitle>
-      <Banner />
+      <Banner bannerImage={bannerImage} title="our menu" description="Would you like to try a dish?"/>
       <Offered data={offered}/>
       <Desserts data={dessert}/>
       <Pizza data={pizza}/>

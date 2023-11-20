@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Container from "../../../components/Container";
 import MenuItem from "../../shared/MenuItem";
@@ -17,7 +18,9 @@ export default function Pizza({data = []}) {
         ))}
       </div>
       <div className="py-4 text-center">
+        <Link to="/our-shop/pizza">
         <Button>Order Your Favorite food</Button>
+        </Link>
       </div>
     </Container>
   );
