@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
+import useAuth from "../../hooks/useAuth";
 
 export default function Navbar() {
+  const { user, logOut } = useAuth();
   const menuItemData = [
     { page: "Home", route: "/" },
     { page: "ContactUs", route: "/contact-us" },
@@ -19,6 +22,16 @@ export default function Navbar() {
       {/* <li><Link><button className="btn btn-outline btn-warning btn-sm">Login</button></Link></li> */}
     </>
   );
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast("Logout Successful!");
+      })
+      .catch((err) => {
+        toast.error(err.code);
+      });
+  };
   return (
     <nav className="bg-black fixed top-0 z-10 w-full text-white bg-opacity-60">
       <div className="navbar max-w-7xl  mx-auto">
@@ -45,7 +58,6 @@ export default function Navbar() {
               className="menu menu-sm items-center dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               {listItems}
-              
             </ul>
           </div>
           <div className="uppercase">
@@ -54,11 +66,21 @@ export default function Navbar() {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 items-center">{listItems}</ul>
+          <ul className="menu menu-horizontal px-1 items-center">
+            {listItems}
+          </ul>
           <figure className="w-10">
             <img src={logo} alt="" />
           </figure>
-          <Link to="/login" className="ml-6"><button className="btn btn-outline btn-warning btn-sm">Login</button></Link>
+          {user ? (
+            <button className="btn btn-outline btn-warning btn-sm ml-6" onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link to="/login" className="ml-6">
+              <button className="btn btn-outline btn-warning btn-sm">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>
