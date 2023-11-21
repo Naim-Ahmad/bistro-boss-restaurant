@@ -12,7 +12,7 @@ export default function AuthProvider({children}) {
         return signInWithPopup(auth, provider)
     }
 
-    const register = (email, password)=>{
+    const registerUser = (email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -44,7 +44,7 @@ export default function AuthProvider({children}) {
         user,
         loading,
         loginWithGoogle,
-        register,
+        registerUser,
         updateUserInfo,
         login,
         logOut
