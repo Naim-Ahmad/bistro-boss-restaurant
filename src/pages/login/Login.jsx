@@ -66,6 +66,7 @@ export default function Login() {
       return setIsCaptchaValid(isValid);
     }
   };
+  
   return (
     <div>
       <div className="hero min-h-screen bg-login">

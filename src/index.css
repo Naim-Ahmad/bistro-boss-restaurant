@@ -57,3 +57,8 @@
 .bg-login {
   background-image: url("./assets/others/authentication.png");
 }
+
+.active {
+  background: none !important;
+  color: white !important;
+}

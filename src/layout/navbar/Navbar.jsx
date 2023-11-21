@@ -1,10 +1,13 @@
+import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
-import logo from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 import useAuth from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
 
 export default function Navbar() {
   const { user, logOut } = useAuth();
+  const {data} = useCart()
+
   const menuItemData = [
     { page: "Home", route: "/" },
     { page: "ContactUs", route: "/contact-us" },
@@ -69,11 +72,21 @@ export default function Navbar() {
           <ul className="menu menu-horizontal px-1 items-center">
             {listItems}
           </ul>
-          <figure className="w-10">
-            <img src={logo} alt="" />
-          </figure>
+          <div className="flex">
+            <Link to="/dashboard/cart">
+              <button className="btn btn-ghost">
+                <IoMdCart size={25} />
+                <div className="badge badge-secondary">{data?.length}</div>
+              </button>
+            </Link>
+          </div>
           {user ? (
-            <button className="btn btn-outline btn-warning btn-sm ml-6" onClick={handleLogout}>Logout</button>
+            <button
+              className="btn btn-outline btn-warning btn-sm ml-6"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           ) : (
             <Link to="/login" className="ml-6">
               <button className="btn btn-outline btn-warning btn-sm">
