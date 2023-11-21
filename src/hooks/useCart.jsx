@@ -6,8 +6,9 @@ export default function useCart() {
 
     const {user} = useAuth()
     const axios = useAxiosSecure()
+    console.log(user)
 
-    const {data, isError, isPending, isSuccess} = useQuery({
+    const {data, isError, isPending, isSuccess, refetch} = useQuery({
         queryKey: ['getCart'],
         queryFn: async ()=>{
             const res = await axios.get(`/cart/${user?.email}`)
@@ -15,5 +16,5 @@ export default function useCart() {
         }
     })
 
-    return {data, isError, isPending, isSuccess}
+    return {data, isError, isPending, isSuccess, refetch}
 }

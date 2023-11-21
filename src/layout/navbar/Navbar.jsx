@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,7 +7,9 @@ import useCart from "../../hooks/useCart";
 
 export default function Navbar() {
   const { user, logOut } = useAuth();
-  const {data} = useCart()
+  const {data:loadedData} = useCart()
+
+  const [data, setData] = useState(loadedData)
 
   const menuItemData = [
     { page: "Home", route: "/" },
@@ -15,6 +18,7 @@ export default function Navbar() {
     { page: "Our Menu", route: "/our-menu" },
     { page: "Our Shop", route: "/our-shop/salad" },
   ];
+
   const listItems = (
     <>
       {menuItemData.map((menuItem) => (
@@ -30,11 +34,14 @@ export default function Navbar() {
     logOut()
       .then(() => {
         toast("Logout Successful!");
+        setData([])
       })
       .catch((err) => {
         toast.error(err.code);
       });
   };
+
+ console.log('navbar render', data)
   return (
     <nav className="bg-black fixed top-0 z-10 w-full text-white bg-opacity-60">
       <div className="navbar max-w-7xl  mx-auto">
@@ -76,7 +83,7 @@ export default function Navbar() {
             <Link to="/dashboard/cart">
               <button className="btn btn-ghost">
                 <IoMdCart size={25} />
-                <div className="badge badge-secondary">{data?.length}</div>
+                <div className="badge badge-secondary">{data?.length ? data?.length : 0}</div>
               </button>
             </Link>
           </div>

@@ -8,11 +8,19 @@ export default function UserCart() {
 
   if(isPending) return <MySpinner/>
 
+  const totalPrice = data.reduce((acc, cur)=> acc + cur.price, 0)
+
+
   return (
-    <div>
+    <div className="bg-[#F6F6F6]">
       <SectionHeader title="WANNA ADD MORE?" subTitle="---My Cart---" />
-      <div>
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg">
         <div className="overflow-x-auto">
+          <div className="flex justify-between mb-10 items-center">
+            <p className="text-2xl font-bold">Total Orders: {data.length}</p>
+            <p className="text-2xl font-bold">Total Price: {totalPrice}</p>
+            <button className="btn btn-warning mr-10">Pay</button>
+          </div>
           <table className="table">
             {/* head */}
             <thead>

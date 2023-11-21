@@ -1,27 +1,39 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Button from "../../components/Button";
 import useAddCart from "../../hooks/useAddCart";
+import useAuth from "../../hooks/useAuth";
 
 export default function MenuCard({ data }) {
   // console.log(Object.keys(data).join(','))
-  const { name, recipe, image,  price } = data;
+  const { name, recipe, image, price } = data;
 
-  const {data:addCart, isSuccess, mutate} = useAddCart()
+  const { user } = useAuth();
+
+  const navigate = useNavigate()
+
+  const {pathname} = useLocation()
+
+  const { data: addCart, isSuccess, mutate } = useAddCart();
 
   const handleAddCart = () => {
-    const review = {...data}
+    if (!user) {
+      navigate('/login', {state: pathname})
+      return toast.error("Please Login");
+    }
+    const review = { ...data };
+    review.email = user?.email;
     delete review._id;
-    mutate(review)
-    
+    mutate(review);
   };
 
-
-  if(isSuccess && addCart.insertedId){
-     Swal.fire({
-      icon: 'success',
-      title: 'Added Review',
-      text: 'Added Review Successful!'
-    })
+  if (isSuccess && addCart.insertedId) {
+    Swal.fire({
+      icon: "success",
+      title: "Added Review",
+      text: "Added Review Successful!",
+    });
   }
 
   return (

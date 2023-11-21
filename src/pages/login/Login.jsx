@@ -29,9 +29,9 @@ export default function Login() {
     const loginPromise = login(email, password)
       .then(() => {
         reset();
-        navigate(state ? state : "/", {
+        state ? navigate(state , {
           replace: true,
-        });
+        }): navigate('/')
       })
       .catch((err) => {
         console.log(err);

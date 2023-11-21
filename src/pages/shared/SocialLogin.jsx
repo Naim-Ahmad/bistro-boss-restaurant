@@ -1,14 +1,18 @@
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 
 export default function SocialLogin() {
     const {loginWithGoogle} = useAuth()
+    const {state} = useLocation()
+    const navigate = useNavigate()
 
     const handleSocialLogin = (cb)=>{
         cb()
         .then(()=>{
             toast('Login Successful!')
+            state ? navigate(state) : navigate('/')
         })
         .catch(err=> {
             console.log(err)
