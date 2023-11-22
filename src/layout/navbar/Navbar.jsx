@@ -46,7 +46,7 @@ export default function Navbar() {
       });
   };
 
- console.log('navbar render', data)
+//  console.log('navbar render', data)
   return (
     <nav className="bg-black fixed top-0 z-10 w-full text-white bg-opacity-60">
       <div className="navbar max-w-7xl  mx-auto">

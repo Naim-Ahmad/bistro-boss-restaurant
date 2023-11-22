@@ -11,9 +11,11 @@ import { LuCalendarClock } from "react-icons/lu";
 import { MdOutlineMenuBook, MdOutlineRestaurant, MdSms } from "react-icons/md";
 import { SiReverbnation } from "react-icons/si";
 import { NavLink } from "react-router-dom";
+import useIsAdmin from "../../../hooks/useIsAdmin";
 
 export default function DashboardNavbar() {
-  const isAdmin = true;
+  const {isAdmin} = useIsAdmin();
+  console.log(isAdmin)
 
   return (
     <div className="drawer md:drawer-open bg-[#D1A054] w-full">

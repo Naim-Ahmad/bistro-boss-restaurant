@@ -12,8 +12,8 @@ export default function SocialLogin() {
     const handleSocialLogin = (cb)=>{
         cb()
         .then((user)=>{
-          const userInfo = {email: user.user.email, name: user.user.displayName}
-          console.log(userInfo, user)
+          const userInfo = {email: user.user.email, name: user.user.displayName, role: 'user'}
+          // console.log(userInfo, user)
           axios.post('/user', userInfo)
           .then(()=> {
             toast('Login Successful!')
