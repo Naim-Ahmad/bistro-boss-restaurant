@@ -1,25 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import MySpinner from "../../../../components/MySpinner";
 import SectionHeader from "../../../../components/SectionHeader";
-import useCart from "../../../../hooks/useCart";
-import TabularForm from "./TabularForm";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import UsersTable from "./UsersTable";
 
-export default function UserCart() {
-  const  {data, isPending} = useCart()
+export default function AllUsers() {
+    const axiosSecure = useAxiosSecure()
+  const  {data, isPending} = useQuery({
+    queryKey: ['allUsers'],
+    queryFn: async()=>{
+        const res = await axiosSecure.get('/users')
+        return res.data;
+    }
+  })
 
   if(isPending) return <MySpinner/>
-
-  const totalPrice = data.reduce((acc, cur)=> acc + cur.price, 0)
-
 
   return (
     <div className="bg-[#F6F6F6]">
       <SectionHeader title="WANNA ADD MORE?" subTitle="---My Cart---" />
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg">
         <div className="overflow-x-auto">
-          <div className="flex justify-between mb-10 items-center">
-            <p className="text-2xl font-bold">Total Orders: {data.length}</p>
-            <p className="text-2xl font-bold">Total Price: {totalPrice}</p>
-            <button className="btn btn-warning mr-10">Pay</button>
+          <div className="mb-10">
+            <p className="text-2xl font-bold">Total Users: {data.length}</p>
+           
           </div>
           <table className="table">
             {/* head */}
@@ -27,15 +31,15 @@ export default function UserCart() {
               <tr>
                 <th>
                 </th>
-                <th>Item Image</th>
-                <th>Item Name</th>
-                <th>Price</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
-              {data?.map((cartData, ind)=> <TabularForm data={cartData} ind={ind} key={cartData._id}/>)}
+              {data?.map((usersData, ind)=> <UsersTable data={usersData} ind={ind} key={usersData._id}/>)}
             </tbody>
           </table>
         </div>

@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import loginImage from "../../assets/others/authentication2.png";
+import axios from "../../config/axios.config";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../shared/SocialLogin";
 
@@ -15,13 +16,28 @@ export default function Register() {
 
   const {registerUser, updateUserInfo} = useAuth()
 
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
   const handlerRegister = ({email, password, name}) => {
     // console.log(data)
     registerUser(email, password)
     .then(()=> {
       updateUserInfo(name)
       .then(()=>{
-        toast('Account Created Successfully!')
+        axios.post('/user', {email, name, role: 'user'})
+        .then(res=> {
+          if(res.data.insertedId){
+            toast('Account Created Successfully!')
+            state ? navigate(state , {
+              replace: true,
+            }): navigate('/')
+          }
+        })
+        .catch(err2=>{
+          console.log(err2)
+        })
+    
         reset()
       })
       .catch(err=> {

@@ -1,6 +1,7 @@
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "../../config/axios.config";
 import useAuth from "../../hooks/useAuth";
 
 export default function SocialLogin() {
@@ -10,9 +11,17 @@ export default function SocialLogin() {
 
     const handleSocialLogin = (cb)=>{
         cb()
-        .then(()=>{
+        .then((user)=>{
+          const userInfo = {email: user.user.email, name: user.user.displayName}
+          console.log(userInfo, user)
+          axios.post('/user', userInfo)
+          .then(()=> {
             toast('Login Successful!')
             state ? navigate(state) : navigate('/')
+          })
+          .catch(err2=>{
+            console.log(err2)
+          })
         })
         .catch(err=> {
             console.log(err)

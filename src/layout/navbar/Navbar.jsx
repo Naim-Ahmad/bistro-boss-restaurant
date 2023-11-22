@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdCart } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,9 +7,14 @@ import useCart from "../../hooks/useCart";
 
 export default function Navbar() {
   const { user, logOut } = useAuth();
-  const {data:loadedData} = useCart()
+  const [data, setData] = useState([])
+  const {data:loadedData = [], status} = useCart()
 
-  const [data, setData] = useState(loadedData)
+  useEffect(()=>{
+    if(status === 'success'){
+      setData(loadedData)
+    }
+  },[loadedData, status])
 
   const menuItemData = [
     { page: "Home", route: "/" },
@@ -83,7 +88,7 @@ export default function Navbar() {
             <Link to="/dashboard/cart">
               <button className="btn btn-ghost">
                 <IoMdCart size={25} />
-                <div className="badge badge-secondary">{data?.length ? data?.length : 0}</div>
+                <div className="badge badge-secondary">{data?.length}</div>
               </button>
             </Link>
           </div>

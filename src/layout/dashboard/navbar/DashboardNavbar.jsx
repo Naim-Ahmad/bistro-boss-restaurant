@@ -1,11 +1,20 @@
-import { FaCalendarAlt, FaHome, FaShoppingBag, FaWallet } from "react-icons/fa";
+import {
+  FaBook,
+  FaCalendarAlt,
+  FaHome,
+  FaShoppingBag,
+  FaWallet,
+} from "react-icons/fa";
+import { ImList2 } from "react-icons/im";
 import { IoMdCart } from "react-icons/io";
 import { LuCalendarClock } from "react-icons/lu";
-import { MdOutlineMenuBook, MdSms } from "react-icons/md";
+import { MdOutlineMenuBook, MdOutlineRestaurant, MdSms } from "react-icons/md";
 import { SiReverbnation } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 
 export default function DashboardNavbar() {
+  const isAdmin = true;
+
   return (
     <div className="drawer md:drawer-open bg-[#D1A054] w-full">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -24,51 +33,103 @@ export default function DashboardNavbar() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full pl-10">
+        <ul className="menu p-4 w-80 min-h-full">
           {/* Sidebar content here */}
-          <li className="flex">
-            <NavLink className="font-medium capitalize text-lg" to="userHome">
-              {" "}
-              <FaHome /> User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="font-medium capitalize text-lg"
-              to="reservation"
-            >
-              {" "}
-              <FaCalendarAlt /> Reservation
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="font-medium capitalize text-lg"
-              to="paymentHistory"
-            >
-              {" "}
-              <FaWallet /> paymentHistory
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="font-medium capitalize text-lg" to="cart">
-              {" "}
-              <IoMdCart /> My Cart
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="font-medium capitalize text-lg" to="review">
-              {" "}
-              <SiReverbnation /> Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="font-medium capitalize text-lg" to="booking">
-              {" "}
-              <LuCalendarClock /> My Booking
-            </NavLink>
-          </li>
-          <div className="divider"></div>
+          {isAdmin ? (
+            <>
+              <li className="flex">
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="adminHome"
+                >
+                  {" "}
+                  <FaHome /> Admin Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="addItem"
+                >
+                  {" "}
+                  <MdOutlineRestaurant /> Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="manageItem"
+                >
+                  {" "}
+                  <ImList2 /> Manage items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-medium capitalize text-lg" to="manageBooking">
+                  {" "}
+                  <FaBook /> Manage Booking
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-medium capitalize text-lg" to="allUsers">
+                  {" "}
+                  <IoMdCart /> All users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="flex">
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="userHome"
+                >
+                  {" "}
+                  <FaHome /> User Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="reservation"
+                >
+                  {" "}
+                  <FaCalendarAlt /> Reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="paymentHistory"
+                >
+                  {" "}
+                  <FaWallet /> paymentHistory
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-medium capitalize text-lg" to="cart">
+                  {" "}
+                  <IoMdCart /> My Cart
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-medium capitalize text-lg" to="review">
+                  {" "}
+                  <SiReverbnation /> Add Review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="font-medium capitalize text-lg"
+                  to="booking"
+                >
+                  {" "}
+                  <LuCalendarClock /> My Booking
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li><div className="divider"></div></li>
           <li>
             <NavLink className="font-medium capitalize text-lg" to="/">
               {" "}
@@ -80,16 +141,18 @@ export default function DashboardNavbar() {
               {" "}
               <MdOutlineMenuBook /> Menu
             </NavLink>
-            
           </li>
           <li>
-          <NavLink className="font-medium capitalize text-lg" to="/our-shop/salad">
+            <NavLink
+              className="font-medium capitalize text-lg"
+              to="/our-shop/salad"
+            >
               {" "}
               <FaShoppingBag /> shop
             </NavLink>
           </li>
           <li>
-          <NavLink className="font-medium capitalize text-lg" to="/contact">
+            <NavLink className="font-medium capitalize text-lg" to="/contact">
               {" "}
               <MdSms /> Contact
             </NavLink>
