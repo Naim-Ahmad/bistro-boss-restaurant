@@ -60,7 +60,7 @@ export default function DashboardNavbar() {
               <li>
                 <NavLink
                   className="font-medium capitalize text-lg"
-                  to="manageItem"
+                  to="manageItems"
                 >
                   {" "}
                   <ImList2 /> Manage items

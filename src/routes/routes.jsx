@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Dashboard from "../layout/dashboard/Dashboard";
 import AddItem from "../pages/dashboard/admin/addItem/AddItem";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
+import ManageItems from "../pages/dashboard/admin/manageItems/ManageItems";
 import UserCart from "../pages/dashboard/user/userCart/UserCart";
 import UserHome from "../pages/dashboard/user/userHome/UserHome";
 import Home from "../pages/home/Home";
@@ -59,8 +60,17 @@ const router = createBrowserRouter([
                 element: <AdminRoute><AllUsers/></AdminRoute>
             },
             {
+                path: 'updateItems/:id',
+                element: <AdminRoute><AllUsers/></AdminRoute>,
+                
+            },
+            {
                 path: 'addItem',
                 element: <AdminRoute><AddItem/></AdminRoute>
+            },
+            {
+                path: 'manageItems',
+                element: <AdminRoute><ManageItems/></AdminRoute>
             },
 
         ]
